@@ -1,39 +1,61 @@
 <!DOCTYPE html>
 <html>
-
-<head>
-    <title>LA TV Shows | Home</title>
-    <meta name="description" content="A Catalog of Shows Set in Los Angeles">
+  <head>
+    <title>Workout Planner</title>
+    <meta name="description" content="A Catalog of Workouts" />
     <link rel="stylesheet" href="style.css" />
     <script type="text/javascript" src="scripts.js"></script>
-</head>
+    <link rel="icon" href="Assets\pageIcon.png" />
+  </head>
 
-<body>
+  <body>
     <header class="main-header">
-        <h1 class="title">LA TV Shows</h1>
-    </header>
-    <div id="card-container">
-        
-    </div>
-    <div class="card" style="display: none;">
-        <div class="card-content">
-            <h2>TV Show Title</h2>
-            <img src="" alt="TV Show Poster">
-            <ul>
-                <li>Bullet Point 1</li>
-                <li>Bullet Point 2</li>
-                <li>Bullet Point 3</li>
-            </ul>
-        </div>
-    </div>
-    <div class="footer">
-        <button onclick="quoteAlert();">
-            Get A Quote!
-        </button>
-        <button onclick="removeLastCard();">
-            Remove A Card!
-        </button>
-    </div>
-</body>
+      <h1 class="title">Workout Planner</h1>
+      <input type="text" id="searchInput" placeholder="Search workouts..." />
+      <button onclick="searchWorkouts();">Search</button>
 
+      <button onclick="quoteAlert();">Get Motivation!</button>
+    </header>
+
+    <div class="sidebar">
+      <div class="filters">
+        <label
+          ><input type="checkbox" id="bodyWeightCheckbox" /> Body Weight</label
+        >
+        <label><input type="checkbox" id="armCheckbox" /> Arm</label>
+        <label><input type="checkbox" id="chestCheckbox" /> Chest</label>
+        <label><input type="checkbox" id="backCheckbox" /> Back</label>
+        <label><input type="checkbox" id="legCheckbox" /> Leg</label>
+        <label><input type="checkbox" id="absCheckbox" /> Abs</label>
+        <label><input type="checkbox" id="compoundCheckbox" /> Compound</label>
+        <button onclick="filterWorkouts();">Filter</button>
+      </div>
+      <hr class="horizontalLine" />
+      <div class="todaysWorkout">
+        <h3 class="centeredTexts">Today's Workout:</h3>
+        <button onclick="todaysWorkout();">Today's Workout</button>
+        <button onclick="removeFirstCard();">Remove Workout</button>
+        <button
+          onclick="randomizeWorkouts();"
+          class="randomize-button"
+          style="display: all"
+        >
+          Randomize
+        </button>
+        <h3 class="centeredTexts">0/6 Complete</h3>
+      </div>
+    </div>
+
+    <div id="card-container"></div>
+    <div class="card" style="display: none">
+      <div class="card-content">
+        <img src="" alt="Workout Poster" />
+        <h2>Workouts</h2>
+        <ul>
+          <li>Body Part:</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer"></div>
+  </body>
 </html>
