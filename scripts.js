@@ -186,17 +186,37 @@ let workouts = [
 
 // This function adds cards the page to display the data in the array
 function showCards() {
+  const searchInput = document
+    .getElementById("searchInput")
+    .value.toLowerCase();
+  console.log("SearchInput: " + searchInput);
+
+  const filteredWorkouts = workouts.filter((workout) =>
+    workout.name.toLowerCase().includes(searchInput)
+  );
+  console.log("filteredWorkouts: " + filteredWorkouts);
+
   const cardContainer = document.getElementById("card-container");
   cardContainer.innerHTML = "";
   const templateCard = document.querySelector(".card");
 
-  for (let i = 0; i < workouts.length; i++) {
-    let workout = workouts[i];
+  for (let i = 0; i < filteredWorkouts.length; i++) {
+    let workout = filteredWorkouts[i];
+
     const nextCard = templateCard.cloneNode(true); // Copy the template card
     editCardContent(nextCard, workout); // Edit title and image
     cardContainer.appendChild(nextCard); // Add new card to the container
   }
 }
+
+// This calls the addCards() function when the page is first loaded
+document.addEventListener("DOMContentLoaded", function () {
+  const searchInput = document.getElementById("searchInput");
+  if (searchInput != null) {
+    searchInput.addEventListener("input", showCards);
+  }
+  showCards(); // Ensure that cards are displayed initially
+});
 
 function editCardContent(card, workout) {
   card.style.display = "block";
@@ -221,9 +241,6 @@ function editCardContent(card, workout) {
   // select "Inspect", then click on the "Console" tab
   //console.log("new card:", newTitle, "- html: ", card);
 }
-
-// This calls the addCards() function when the page is first loaded
-document.addEventListener("DOMContentLoaded", showCards);
 
 function quoteAlert() {
   alert(
