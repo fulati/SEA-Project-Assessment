@@ -1,37 +1,6 @@
-/**
- * Data Catalog Project Starter Code - SEA Stage 2
- *
- * This file is where you should be doing most of your work. You should
- * also make changes to the HTML and CSS files, but we want you to prioritize
- * demonstrating your understanding of data structures, and you'll do that
- * with the JavaScript code you write in this file.
- *
- * The comments in this file are only to help you learn how the starter code
- * works. The instructions for the project are in the README. That said, here
- * are the three things you should do first to learn about the starter code:
- * - 1 - Change something small in index.html or style.css, then reload your
- *    browser and make sure you can see that change.
- * - 2 - On your browser, right click anywhere on the page and select
- *    "Inspect" to open the browser developer tools. Then, go to the "console"
- *    tab in the new window that opened up. This console is where you will see
- *    JavaScript errors and logs, which is extremely helpful for debugging.
- *    (These instructions assume you're using Chrome, opening developer tools
- *    may be different on other browsers. We suggest using Chrome.)
- * - 3 - Add another string to the titles array a few lines down. Reload your
- *    browser and observe what happens. You should see a fourth "card" appear
- *    with the string you added to the array, but a broken image.
- *
- */
-
+//Import data from external files
 import { workouts } from "./workouts.js";
 import { quotes } from "./quotes.js";
-
-// This is an array of objects (workouts)
-
-//Motivational Quotes
-
-// Your final submission should have much more data than this, and
-// you should use more than just an array of strings to store it all.
 
 //SEARCHING AND FILTERING DISPLAY FEATURE ----------------------------
 // This function adds cards the page to display the data in the array
@@ -41,6 +10,7 @@ function showCards() {
     .value.toLowerCase();
   console.log("SearchInput: " + searchInput);
 
+  //Filters checked checkboxes only
   const filtersCheckBoxes = document.querySelectorAll(
     'input[type="checkbox"]:checked'
   );
@@ -48,7 +18,7 @@ function showCards() {
   let bodyWeightChecked = false;
   let compoundChecked = false;
 
-  //Determine which checkboxes are checked
+  //Determine which specific checkboxes are checked
   for (let i = 0; i < filtersCheckBoxes.length; i++) {
     const checkbox = filtersCheckBoxes[i];
     if (checkbox.value === "Body Weight") {
@@ -60,6 +30,7 @@ function showCards() {
     }
   }
 
+  //Filtering the workouts based on matches from the conditions below
   const filteredWorkouts = workouts.filter((workout) => {
     //Matches based on the search feature
     const searchNameMatches = workout.name.toLowerCase().includes(searchInput);
@@ -94,6 +65,7 @@ function showCards() {
     noWorkoutFoundText.setAttribute("id", "noWorkoutFound");
     cardContainer.appendChild(noWorkoutFoundText);
   } else {
+    //If results are found
     const templateCard = document.querySelector(".card");
 
     for (let i = 0; i < filteredWorkouts.length; i++) {
@@ -120,13 +92,16 @@ function bodyPartFilter(workout, selectedBodyParts) {
 function editCardContent(card, workout) {
   card.style.display = "block";
 
+  //Editing the title of the card
   const cardHeader = card.querySelector("h2");
   cardHeader.textContent = workout.name;
 
+  //Editing the image of the card
   const cardImage = card.querySelector("img");
   cardImage.src = workout.img;
   cardImage.alt = workout.name + " image";
 
+  //Editing the inner details of the card
   const cardContent = card.querySelector(".card-content");
   const workoutDetails = cardContent.querySelector("ul");
   workoutDetails.innerHTML = `
@@ -135,14 +110,9 @@ function editCardContent(card, workout) {
     <li><b>Compound</b>: ${workout.compound ? "Yes" : "No"}</li>
     <li><b>Equipment</b>: ${workout.equipment}</li>
   `;
-
-  // You can use console.log to help you debug!
-  // View the output by right clicking on your website,
-  // select "Inspect", then click on the "Console" tab
-  //console.log("new card:", newTitle, "- html: ", card);
 }
 
-//Show all workout Method
+//Show all workout function
 function showAllWorkout() {
   const filtersCheckBoxes = document.querySelectorAll('input[type="checkbox"]');
   for (let i = 0; i < filtersCheckBoxes.length; i++) {

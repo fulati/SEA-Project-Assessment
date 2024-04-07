@@ -12,6 +12,7 @@ body {
   text-align: center;
 }
 
+/* Title of the page */
 .title {
   text-align: center;
   margin: 0;
@@ -94,6 +95,7 @@ body {
   margin: 5px;
 }
 
+/* Individual Card Contents */
 .card-content {
   padding: 20px;
   font-family: "Verdana";
@@ -110,7 +112,7 @@ body {
   height: auto;
 }
 
-/* all buttons */
+/* All buttons */
 button {
   text-align: center;
   background-color: #808080;
@@ -125,12 +127,12 @@ button {
   margin: 5px;
 }
 
-/* unordered list */
+/* Unordered list */
 ul {
   margin-left: -25px;
 }
 
-/* No Workout Found text */
+/* No workout found text */
 #noWorkoutFound {
   margin-left: -8em;
 }
