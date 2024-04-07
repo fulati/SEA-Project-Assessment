@@ -270,14 +270,22 @@ function showCards() {
 
   const cardContainer = document.getElementById("card-container");
   cardContainer.innerHTML = "";
-  const templateCard = document.querySelector(".card");
 
-  for (let i = 0; i < filteredWorkouts.length; i++) {
-    let workout = filteredWorkouts[i];
+  if (filteredWorkouts.length === 0) {
+    const noWorkoutFoundText = document.createElement("h1");
+    noWorkoutFoundText.textContent = "No Workout Found!";
+    noWorkoutFoundText.setAttribute("id", "noWorkoutFound");
+    cardContainer.appendChild(noWorkoutFoundText);
+  } else {
+    const templateCard = document.querySelector(".card");
 
-    const nextCard = templateCard.cloneNode(true); // Copy the template card
-    editCardContent(nextCard, workout); // Edit title and image
-    cardContainer.appendChild(nextCard); // Add new card to the container
+    for (let i = 0; i < filteredWorkouts.length; i++) {
+      let workout = filteredWorkouts[i];
+
+      const nextCard = templateCard.cloneNode(true); // Copy the template card
+      editCardContent(nextCard, workout); // Edit title and image
+      cardContainer.appendChild(nextCard); // Add new card to the container
+    }
   }
 }
 

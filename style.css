@@ -103,14 +103,6 @@ body {
   height: auto;
 }
 
-.footer {
-  display: flex;
-  justify-content: center;
-  background-color: rgb(60, 60, 60);
-  color: white;
-  padding: 20px;
-}
-
 button {
   text-align: center;
   background-color: #808080;
@@ -127,4 +119,8 @@ button {
 
 ul {
   margin-left: -25px;
+}
+
+#noWorkoutFound {
+  margin-left: -8em;
 }
