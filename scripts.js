@@ -298,6 +298,7 @@ let quotes = [
 // Your final submission should have much more data than this, and
 // you should use more than just an array of strings to store it all.
 
+//SEARCHING AND FILTERING DISPLAY FEATURE ----------------------------
 // This function adds cards the page to display the data in the array
 function showCards() {
   const searchInput = document
@@ -421,12 +422,6 @@ function editCardContent(card, workout) {
   //console.log("new card:", newTitle, "- html: ", card);
 }
 
-//Remove Workout Method
-function removeFirstCard() {
-  workouts.shift(); // Remove first item in workout array
-  showCards(); // Call showCards again to refresh
-}
-
 //Show all workout Method
 function showAllWorkout() {
   const filtersCheckBoxes = document.querySelectorAll('input[type="checkbox"]');
@@ -437,15 +432,15 @@ function showAllWorkout() {
   showCards();
 }
 
-//MOTIVATIONAL QUOTES ----------------------------------
+//MOTIVATIONAL QUOTES FEATURE ----------------------------------
 
 //Generates random quotes
 function quoteGenerator() {
   const quote = document.getElementById("quote");
   const popup = document.getElementById("motivationPopUp");
   if (popup) {
-    const randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
-    quote.textContent = randomQuote.quote + " - " + randomQuote.author;
+    const randomIndex = quotes[Math.floor(Math.random() * quotes.length)];
+    quote.textContent = randomIndex.quote + " - " + randomIndex.author;
     popup.style.display = "block"; // Show the popup
   }
 }
@@ -465,3 +460,63 @@ window.onclick = function (event) {
     popup.style.display = "none"; // Hide the popup
   }
 };
+
+//TODAY'S WORKOUT FEATURE ---------------------------------------
+
+//Hide All Cards
+function hideAllCards() {
+  const cardContainer = document.getElementById("card-container");
+  cardContainer.innerHTML = ""; // Clear the card container
+}
+
+//Today's workout array and nonRepeatIndex array
+let todaysWorkoutCards = [];
+let nonRepeatIndex = [];
+
+//Display Today's Workout
+function todaysWorkout() {
+  //Hide all the workouts before showing today's workouts
+  hideAllCards();
+
+  const cardContainer = document.getElementById("card-container");
+  const templateCard = document.querySelector(".card");
+
+  // Clear today's workout array
+  todaysWorkoutCards = [];
+
+  // Indices
+  nonRepeatIndex = [];
+
+  //Display only 6 workouts for the day
+  for (i = 0; i < 6; i++) {
+    let randomIndex;
+    do {
+      randomIndex = Math.floor(Math.random() * workouts.length);
+    } while (nonRepeatIndex.includes(randomIndex)); // Keep generating new index until it's unique
+
+    // Add the random index to the non-repeat index array
+    nonRepeatIndex.push(randomIndex);
+
+    let workout = workouts[randomIndex];
+
+    const nextCard = templateCard.cloneNode(true); // Copy the template card
+    editCardContent(nextCard, workout); // Edit title and image
+    todaysWorkoutCards.push(nextCard);
+    cardContainer.appendChild(nextCard); // Add new card to the container
+  }
+
+  const counterText = document.getElementById("completedWorkoutText");
+  counterText.textContent = "0/6 Complete";
+}
+
+//Remove Workout Method
+function removeFirstCard() {
+  if (todaysWorkoutCards.length > 0) {
+    const todaysFirstWorkout = todaysWorkoutCards.shift(); // Remove first item in workout array
+    const cardContainer = document.getElementById("card-container");
+    cardContainer.removeChild(todaysFirstWorkout); // Remove the card
+
+    const counterText = document.getElementById("completedWorkoutText");
+    counterText.textContent = `${6 - todaysWorkoutCards.length}/6 Complete`;
+  }
+}
