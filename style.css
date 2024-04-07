@@ -16,10 +16,10 @@ body {
 .title {
   text-align: center;
   margin: 0;
-  font-size: 4em;
+  font-size: 5em;
   font-family: "Helvetica";
   font-weight: normal;
-  color: white;
+  color: rgb(0, 162, 255);
 }
 
 /* Search box */
@@ -34,7 +34,7 @@ body {
 
 /* Sidebar container */
 .sidebar {
-  background-color: rgb(60, 60, 60);
+  background-color: rgb(85, 85, 85);
   color: white;
   height: 520px;
   width: 240px;
@@ -104,27 +104,38 @@ body {
 
 .card-content h2 {
   font-size: 25px;
-  color: rgba(24, 24, 24, 0.805);
+  color: rgba(24, 24, 24, 0.85);
 }
 
 .card img {
   width: 100%;
   height: auto;
+  border-radius: 4px;
+}
+
+.card li {
+  color: rgba(24, 24, 24, 0.85);
 }
 
 /* All buttons */
 button {
   text-align: center;
-  background-color: #808080;
+  background-color: #c1c1c1;
   border: none;
   padding-left: 10px;
   padding-right: 10px;
   height: 30px;
   border-radius: 10px;
-  color: white;
+  color: rgb(0, 0, 0);
   font-size: 16px;
   cursor: pointer;
   margin: 5px;
+}
+
+/* Hover effect */
+button:hover {
+  color: rgb(0, 88, 138);
+  background-color: #808080; /* Change background color on hover */
 }
 
 /* Unordered list */
