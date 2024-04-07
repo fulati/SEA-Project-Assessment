@@ -219,6 +219,82 @@ let workouts = [
   },
 ];
 
+//Motivational Quotes
+let quotes = [
+  {
+    quote:
+      "“I hated every minute of training, but I said, 'Don't quit'. Suffer now and live the rest of your life as a champion.”",
+    author: "Muhammad Ali",
+  },
+  {
+    quote:
+      "“We are what we repeatedly do. Excellence then is not an act but a habit.”",
+    author: "Aristotele",
+  },
+  {
+    quote: "“The body achieves what the mind believes.”",
+    author: "Napoleon Hill",
+  },
+  {
+    quote:
+      "“The hard days are the best because that's when champions are made, so if you push through, you can push through anything.”",
+    author: "Dana Vollmer",
+  },
+  {
+    quote:
+      "“If you don't find the time, if you don't do the work, you don't get the results.”",
+    author: "Arnold Schwarzenegger",
+  },
+  {
+    quote: "“Push harder than yesterday if you want a different tomorrow.”",
+    author: "Vincent Williams Sr.",
+  },
+  {
+    quote: "“The real workout starts when you want to stop.”",
+    author: "Ronnie Coleman",
+  },
+  {
+    quote:
+      "“I've failed over and over again in my life and that is why I succeed.”",
+    author: "Michael Jordan",
+  },
+  {
+    quote: "“The secret of getting ahead is getting started.”",
+    author: "Mark Twain",
+  },
+  {
+    quote: "“You miss one hundred percent of the shots you don't take.”",
+    author: "Wayne Gretzky",
+  },
+  {
+    quote:
+      "“Most people fail, not because of lack of desire, but, because of lack of commitment.”",
+    author: "Vince Lombardi",
+  },
+  {
+    quote:
+      "“Just believe in yourself. Even if you don't, just pretend that you do and at some point, you will.”",
+    author: "Venus Williams",
+  },
+  {
+    quote:
+      "“If you want something you've never had, you must be willing to do something you've never done.”",
+    author: "Thomas Jefferson",
+  },
+  {
+    quote: "“Once you learn to quit, it becomes a habit.”",
+    author: "Vince Lombardi",
+  },
+  {
+    quote: "“Do something today that your future self will thank you for.”",
+    author: "Sean Patrick Flanery",
+  },
+  {
+    quote: "“What hurts today makes you stronger tomorrow”",
+    author: "Jay Cutler",
+  },
+];
+
 // Your final submission should have much more data than this, and
 // you should use more than just an array of strings to store it all.
 
@@ -236,6 +312,7 @@ function showCards() {
   let bodyWeightChecked = false;
   let compoundChecked = false;
 
+  //Determine which checkboxes are checked
   for (let i = 0; i < filtersCheckBoxes.length; i++) {
     const checkbox = filtersCheckBoxes[i];
     if (checkbox.value === "Body Weight") {
@@ -248,15 +325,18 @@ function showCards() {
   }
 
   const filteredWorkouts = workouts.filter((workout) => {
-    // matches based on the search feature
+    //Matches based on the search feature
     const searchNameMatches = workout.name.toLowerCase().includes(searchInput);
 
-    // matches based on the checkbox filters
+    //Matches based on the checkbox filters
     const bodyPartMatches =
       selectedBodyParts.length === 0 ||
       bodyPartFilter(workout, selectedBodyParts);
 
+    //Matches based on the body weight checkbox
     const bodyWeightMatches = !bodyWeightChecked || workout.bodyweight;
+
+    //Matches based on the compound workout checkbox
     const compoundMatches = !compoundChecked || workout.compound;
 
     return (
@@ -271,6 +351,7 @@ function showCards() {
   const cardContainer = document.getElementById("card-container");
   cardContainer.innerHTML = "";
 
+  //If no result is found from the search
   if (filteredWorkouts.length === 0) {
     const noWorkoutFoundText = document.createElement("h1");
     noWorkoutFoundText.textContent = "No Workout Found!";
@@ -289,6 +370,7 @@ function showCards() {
   }
 }
 
+//Filter the workout based on selectedFilters
 function bodyPartFilter(workout, selectedBodyParts) {
   for (let i = 0; i < selectedBodyParts.length; i++) {
     if (workout.bodyPart.includes(selectedBodyParts[i])) {
@@ -298,7 +380,7 @@ function bodyPartFilter(workout, selectedBodyParts) {
   return false;
 }
 
-// This calls the addCards() function when the page is first loaded
+// This calls the addCards() function when the page is first loaded as well as if any of the events occurs
 document.addEventListener("DOMContentLoaded", function () {
   const searchInput = document.getElementById("searchInput");
   if (searchInput != null) {
@@ -313,6 +395,7 @@ document.addEventListener("DOMContentLoaded", function () {
   showCards(); // Ensure that cards are displayed initially
 });
 
+//Edit Card Content Method
 function editCardContent(card, workout) {
   card.style.display = "block";
 
@@ -338,17 +421,13 @@ function editCardContent(card, workout) {
   //console.log("new card:", newTitle, "- html: ", card);
 }
 
-function quoteAlert() {
-  alert(
-    "I guess I can kiss heaven goodbye, because it got to be a sin to look this good!"
-  );
-}
-
+//Remove Workout Method
 function removeFirstCard() {
   workouts.shift(); // Remove first item in workout array
   showCards(); // Call showCards again to refresh
 }
 
+//Show all workout Method
 function showAllWorkout() {
   const filtersCheckBoxes = document.querySelectorAll('input[type="checkbox"]');
   for (let i = 0; i < filtersCheckBoxes.length; i++) {
@@ -357,3 +436,32 @@ function showAllWorkout() {
 
   showCards();
 }
+
+//MOTIVATIONAL QUOTES ----------------------------------
+
+//Generates random quotes
+function quoteGenerator() {
+  const quote = document.getElementById("quote");
+  const popup = document.getElementById("motivationPopUp");
+  if (popup) {
+    const randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
+    quote.textContent = randomQuote.quote + " - " + randomQuote.author;
+    popup.style.display = "block"; // Show the popup
+  }
+}
+
+// Function to close the popup when the close button is clicked
+function closePopup() {
+  const popup = document.getElementById("motivationPopUp");
+  if (popup) {
+    popup.style.display = "none"; // Hide the popup
+  }
+}
+
+// Function to close the popup when clicking outside of it
+window.onclick = function (event) {
+  const popup = document.getElementById("motivationPopUp");
+  if (event.target === popup) {
+    popup.style.display = "none"; // Hide the popup
+  }
+};

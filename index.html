@@ -9,13 +9,15 @@
   </head>
 
   <body>
+    <!-- Header -->
     <header class="main-header">
       <h1 class="title">Workout Planner</h1>
       <input type="text" id="searchInput" placeholder="Search workouts..." />
 
-      <button onclick="quoteAlert();">Get Motivation!</button>
+      <button onclick="quoteGenerator();">Get Motivation!</button>
     </header>
 
+    <!-- Sidebar -->
     <div class="sidebar">
       <div class="filters">
         <label
@@ -70,7 +72,23 @@
       </div>
     </div>
 
+    <!-- Motivation Popup -->
+    <div id="motivationPopUp" class="popup">
+      <div class="popUp-content">
+        <img
+          onclick="closePopup();"
+          id="closeBtn"
+          src="Assets\closeBtn.png"
+          alt="close button"
+        />
+        <p id="quote"></p>
+      </div>
+    </div>
+
+    <!-- Card Container -->
     <div id="card-container"></div>
+
+    <!-- Card Template -->
     <div class="card" style="display: none">
       <div class="card-content">
         <img src="" alt="Workout Poster" />
