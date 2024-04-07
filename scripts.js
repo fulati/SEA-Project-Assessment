@@ -28,155 +28,193 @@ let workouts = [
   {
     name: "Bench Press",
     img: "Assets/bench_press.gif",
-    bodyPart: "Chest",
+    bodyPart: ["Chest"],
     bodyweight: false,
+    compound: true,
     equipment: "Bench and Barbell",
   },
   {
     name: "Incline Press",
     img: "Assets/incline_press.gif",
-    bodyPart: "Chest",
+    bodyPart: ["Chest"],
     bodyweight: false,
+    compound: false,
     equipment: "Bench and Barbell",
   },
   {
     name: "Shoulder Press",
     img: "Assets/shoulder_press.gif",
-    bodyPart: "Shoulders",
+    bodyPart: ["Shoulders"],
     bodyweight: false,
+    compound: true,
     equipment: "Dumbbells or Barbell",
   },
   {
     name: "Lateral Raises",
     img: "Assets/lateral_raises.gif",
-    bodyPart: "Shoulders",
+    bodyPart: ["Shoulders"],
     bodyweight: false,
+    compound: false,
     equipment: "Dumbbells or Cable Machine",
   },
   {
     name: "Skull Crushers",
     img: "Assets/skull_crushers.gif",
-    bodyPart: "Triceps",
+    bodyPart: ["Triceps"],
     bodyweight: false,
+    compound: true,
     equipment: "E-Z Curl Bar or Dumbbells",
   },
   {
     name: "Tricep Rope Pushdown",
     img: "Assets/tricep_rope_pushdown.gif",
-    bodyPart: "Triceps",
+    bodyPart: ["Triceps"],
     bodyweight: false,
+    compound: false,
     equipment: "Cable Machine",
   },
   {
     name: "Barbell Rows",
     img: "Assets/barbell_rows.gif",
-    bodyPart: "Back",
+    bodyPart: ["Back"],
     bodyweight: false,
+    compound: true,
     equipment: "Barbell",
   },
   {
     name: "Lat Pull Down",
     img: "Assets/lat_pull_down.gif",
-    bodyPart: "Back",
+    bodyPart: ["Back"],
     bodyweight: false,
+    compound: false,
     equipment: "Lat Pulldown Machine",
+  },
+  {
+    name: "Shrugs",
+    img: "Assets/shrugs.gif",
+    bodyPart: ["Back"],
+    bodyweight: false,
+    compound: true,
+    equipment: "Dumbell or Barbell",
   },
   {
     name: "Bicep Curl",
     img: "Assets/bicep_curls.gif",
-    bodyPart: "Biceps",
+    bodyPart: ["Biceps"],
     bodyweight: false,
+    compound: true,
     equipment: "Dumbell or Barbell",
+  },
+  {
+    name: "Hammer Curl",
+    img: "Assets/hammer_curl.gif",
+    bodyPart: ["Biceps"],
+    bodyweight: false,
+    compound: false,
+    equipment: "Dumbell",
   },
   {
     name: "Weighted Squat",
     img: "Assets/weighted_squat.gif",
-    bodyPart: "Legs",
+    bodyPart: ["Legs"],
     bodyweight: false,
+    compound: true,
     equipment: "Barbell, Squat Rack",
   },
   {
     name: "Deadlift",
     img: "Assets/deadlift.gif",
-    bodyPart: "Lower Back, Hamstrings",
+    bodyPart: ["Back", "Legs"],
     bodyweight: false,
+    compound: true,
     equipment: "Barbell, Weight Plates",
   },
   {
     name: "Leg Extension",
     img: "Assets/leg_extension.gif",
-    bodyPart: "Quadriceps",
+    bodyPart: ["Legs"],
     bodyweight: false,
+    compound: false,
     equipment: "Leg Extension Machine",
   },
   {
     name: "Leg Curls",
     img: "Assets/leg_curls.gif",
-    bodyPart: "Hamstrings",
+    bodyPart: ["Legs"],
     bodyweight: false,
+    compound: false,
     equipment: "Leg Curl Machine",
   },
   {
     name: "Crunches",
     img: "Assets/crunches.gif",
-    bodyPart: "Abdominals",
+    bodyPart: ["Abs"],
     bodyweight: true,
+    compound: false,
     equipment: "None",
   },
   {
     name: "Plank",
     img: "Assets/plank.gif",
-    bodyPart: "Core",
+    bodyPart: ["Abs"],
     bodyweight: true,
+    compound: true,
     equipment: "None",
   },
   {
     name: "Lunges",
     img: "Assets/lunges.gif",
-    bodyPart: "Legs",
+    bodyPart: ["Legs"],
     bodyweight: true,
+    compound: true,
     equipment: "None",
   },
   {
     name: "Pistol Squat",
     img: "Assets/pistol_squat.gif",
-    bodyPart: "Legs",
+    bodyPart: ["Legs"],
     bodyweight: true,
+    compound: false,
     equipment: "None",
   },
   {
     name: "Push-ups",
     img: "Assets/push_ups.gif",
-    bodyPart: "Chest, Shoulders, Triceps",
+    bodyPart: ["Chest", "Shoulders", "Triceps"],
     bodyweight: true,
+    compound: true,
     equipment: "None",
   },
   {
     name: "Dips",
     img: "Assets/dips.gif",
-    bodyPart: "Chest, Shoulders, Triceps",
+    bodyPart: ["Chest", "Shoulders", "Triceps"],
     bodyweight: true,
+    compound: true,
     equipment: "Parallel Bars or Dip Station",
   },
   {
     name: "Pull-ups",
     img: "Assets/pull_ups.gif",
-    bodyPart: "Back, Biceps",
+    bodyPart: ["Back", "Biceps"],
     bodyweight: true,
+    compound: true,
     equipment: "Pull-up Bar",
   },
   {
     name: "Pike Push-ups",
     img: "Assets/pike_push_ups.gif",
-    bodyPart: "Chest, Triceps, Shoulders",
+    bodyPart: ["Chest", "Triceps", "Shoulders"],
     bodyweight: true,
+    compound: true,
     equipment: "None",
   },
   {
     name: "Diamond Push-ups",
     img: "Assets/diamond_push_ups.gif",
-    bodyPart: "Chest, Triceps",
+    bodyPart: ["Chest", "Triceps"],
     bodyweight: true,
+    compound: true,
     equipment: "None",
   },
 ];
@@ -191,9 +229,43 @@ function showCards() {
     .value.toLowerCase();
   console.log("SearchInput: " + searchInput);
 
-  const filteredWorkouts = workouts.filter((workout) =>
-    workout.name.toLowerCase().includes(searchInput)
+  const filtersCheckBoxes = document.querySelectorAll(
+    'input[type="checkbox"]:checked'
   );
+  const selectedBodyParts = [];
+  let bodyWeightChecked = false;
+  let compoundChecked = false;
+
+  for (let i = 0; i < filtersCheckBoxes.length; i++) {
+    const checkbox = filtersCheckBoxes[i];
+    if (checkbox.value === "Body Weight") {
+      bodyWeightChecked = true;
+    } else if (checkbox.value === "Compound") {
+      compoundChecked = true;
+    } else {
+      selectedBodyParts.push(checkbox.value);
+    }
+  }
+
+  const filteredWorkouts = workouts.filter((workout) => {
+    // matches based on the search feature
+    const searchNameMatches = workout.name.toLowerCase().includes(searchInput);
+
+    // matches based on the checkbox filters
+    const bodyPartMatches =
+      selectedBodyParts.length === 0 ||
+      bodyPartFilter(workout, selectedBodyParts);
+
+    const bodyWeightMatches = !bodyWeightChecked || workout.bodyweight;
+    const compoundMatches = !compoundChecked || workout.compound;
+
+    return (
+      searchNameMatches &&
+      bodyPartMatches &&
+      bodyWeightMatches &&
+      compoundMatches
+    );
+  });
   console.log("filteredWorkouts: " + filteredWorkouts);
 
   const cardContainer = document.getElementById("card-container");
@@ -209,12 +281,27 @@ function showCards() {
   }
 }
 
+function bodyPartFilter(workout, selectedBodyParts) {
+  for (let i = 0; i < selectedBodyParts.length; i++) {
+    if (workout.bodyPart.includes(selectedBodyParts[i])) {
+      return true;
+    }
+  }
+  return false;
+}
+
 // This calls the addCards() function when the page is first loaded
 document.addEventListener("DOMContentLoaded", function () {
   const searchInput = document.getElementById("searchInput");
   if (searchInput != null) {
     searchInput.addEventListener("input", showCards);
   }
+
+  const filtersCheckBoxes = document.querySelectorAll('input[type="checkbox"]');
+  for (let i = 0; i < filtersCheckBoxes.length; i++) {
+    filtersCheckBoxes[i].addEventListener("click", showCards);
+  }
+
   showCards(); // Ensure that cards are displayed initially
 });
 
@@ -231,9 +318,10 @@ function editCardContent(card, workout) {
   const cardContent = card.querySelector(".card-content");
   const workoutDetails = cardContent.querySelector("ul");
   workoutDetails.innerHTML = `
-    <li>Body Part: ${workout.bodyPart}</li>
-    <li>Bodyweight: ${workout.bodyweight ? "Yes" : "No"}</li>
-    <li>Equipment: ${workout.equipment}</li>
+    <li><b>Body Part</b>: ${workout.bodyPart}</li>
+    <li><b>Bodyweight</b>: ${workout.bodyweight ? "Yes" : "No"}</li>
+    <li><b>Compound</b>: ${workout.compound ? "Yes" : "No"}</li>
+    <li><b>Equipment</b>: ${workout.equipment}</li>
   `;
 
   // You can use console.log to help you debug!
@@ -251,4 +339,13 @@ function quoteAlert() {
 function removeFirstCard() {
   workouts.shift(); // Remove first item in workout array
   showCards(); // Call showCards again to refresh
+}
+
+function showAllWorkout() {
+  const filtersCheckBoxes = document.querySelectorAll('input[type="checkbox"]');
+  for (let i = 0; i < filtersCheckBoxes.length; i++) {
+    filtersCheckBoxes[i].checked = false;
+  }
+
+  showCards();
 }
