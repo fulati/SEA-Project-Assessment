@@ -12,7 +12,6 @@
     <header class="main-header">
       <h1 class="title">Workout Planner</h1>
       <input type="text" id="searchInput" placeholder="Search workouts..." />
-      <button onclick="searchWorkouts();">Search</button>
 
       <button onclick="quoteAlert();">Get Motivation!</button>
     </header>
@@ -22,13 +21,15 @@
         <label
           ><input type="checkbox" id="bodyWeightCheckbox" /> Body Weight</label
         >
-        <label><input type="checkbox" id="armCheckbox" /> Arm</label>
+        <label><input type="checkbox" id="bicepCheckbox" /> Bicep</label>
+        <label><input type="checkbox" id="tricepCheckbox" /> Tricep</label>
+        <label><input type="checkbox" id="shoulderCheckbox" /> Shoulder</label>
         <label><input type="checkbox" id="chestCheckbox" /> Chest</label>
         <label><input type="checkbox" id="backCheckbox" /> Back</label>
         <label><input type="checkbox" id="legCheckbox" /> Leg</label>
         <label><input type="checkbox" id="absCheckbox" /> Abs</label>
         <label><input type="checkbox" id="compoundCheckbox" /> Compound</label>
-        <button onclick="filterWorkouts();">Filter</button>
+        <button onclick="showAllWorkout();">All Workouts</button>
       </div>
       <hr class="horizontalLine" />
       <div class="todaysWorkout">
@@ -38,7 +39,7 @@
         <button
           onclick="randomizeWorkouts();"
           class="randomize-button"
-          style="display: all"
+          style="display: block"
         >
           Randomize
         </button>
@@ -51,9 +52,7 @@
       <div class="card-content">
         <img src="" alt="Workout Poster" />
         <h2>Workouts</h2>
-        <ul>
-          <li>Body Part:</li>
-        </ul>
+        <ul></ul>
       </div>
     </div>
     <div class="footer"></div>

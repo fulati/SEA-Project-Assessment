@@ -27,16 +27,17 @@ body {
   border: none;
   border-radius: 5px;
   cursor: pointer;
+  font-size: 15px;
 }
 
 .sidebar {
   background-color: rgb(60, 60, 60);
   color: white;
-  height: 52vh;
+  height: 58vh;
   width: 240px;
   position: fixed;
   left: 25px;
-  top: 16em;
+  top: 15em;
   border-radius: 10px;
 }
 
@@ -45,7 +46,7 @@ body {
 }
 
 .filters {
-  margin: 15px 0px 5px 20px;
+  margin: 20px 0px 5px 20px;
 }
 
 .filters label {
@@ -111,7 +112,7 @@ button {
   height: 30px;
   border-radius: 10px;
   color: white;
-  font-size: 18px;
+  font-size: 16px;
   cursor: pointer;
   margin: 5px;
 }

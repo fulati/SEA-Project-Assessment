@@ -23,40 +23,164 @@
  *
  */
 
-const FRESH_PRINCE_URL =
-  "https://upload.wikimedia.org/wikipedia/en/3/33/Fresh_Prince_S1_DVD.jpg";
-const CURB_POSTER_URL =
-  "https://m.media-amazon.com/images/M/MV5BZDY1ZGM4OGItMWMyNS00MDAyLWE2Y2MtZTFhMTU0MGI5ZDFlXkEyXkFqcGdeQXVyMDc5ODIzMw@@._V1_FMjpg_UX1000_.jpg";
-const EAST_LOS_HIGH_POSTER_URL =
-  "https://static.wikia.nocookie.net/hulu/images/6/64/East_Los_High.jpg";
-
-// This is an array of strings (TV show titles)
-let titles = [
-  "Bench Press",
-  "Inclide Press",
-  "Shoulder Press",
-  "Lateral Raises",
-  "Skull Crushers",
-  "Tricep Rope Pushdown",
-  "Barbell Rows",
-  "Lat Pull Down",
-  "Leg Extension",
-  "Hamstring Extension",
-  "Crunch Machine",
-  "Barbell Bicep Curl",
-  "Weighted Squat",
-  "Deadlift",
-  "Sit Ups",
-  "Crunches",
-  "Planks",
-  "Lunges",
-  "Pistol Squat",
-  "Bodyweight Squat",
-  "Push-ups",
-  "Dips",
-  "Pull-ups",
-  "Diamond Push-ups",
+// This is an array of objects (workouts)
+let workouts = [
+  {
+    name: "Bench Press",
+    img: "Assets/bench_press.gif",
+    bodyPart: "Chest",
+    bodyweight: false,
+    equipment: "Bench and Barbell",
+  },
+  {
+    name: "Incline Press",
+    img: "Assets/incline_press.gif",
+    bodyPart: "Chest",
+    bodyweight: false,
+    equipment: "Bench and Barbell",
+  },
+  {
+    name: "Shoulder Press",
+    img: "Assets/shoulder_press.gif",
+    bodyPart: "Shoulders",
+    bodyweight: false,
+    equipment: "Dumbbells or Barbell",
+  },
+  {
+    name: "Lateral Raises",
+    img: "Assets/lateral_raises.gif",
+    bodyPart: "Shoulders",
+    bodyweight: false,
+    equipment: "Dumbbells or Cable Machine",
+  },
+  {
+    name: "Skull Crushers",
+    img: "Assets/skull_crushers.gif",
+    bodyPart: "Triceps",
+    bodyweight: false,
+    equipment: "E-Z Curl Bar or Dumbbells",
+  },
+  {
+    name: "Tricep Rope Pushdown",
+    img: "Assets/tricep_rope_pushdown.gif",
+    bodyPart: "Triceps",
+    bodyweight: false,
+    equipment: "Cable Machine",
+  },
+  {
+    name: "Barbell Rows",
+    img: "Assets/barbell_rows.gif",
+    bodyPart: "Back",
+    bodyweight: false,
+    equipment: "Barbell",
+  },
+  {
+    name: "Lat Pull Down",
+    img: "Assets/lat_pull_down.gif",
+    bodyPart: "Back",
+    bodyweight: false,
+    equipment: "Lat Pulldown Machine",
+  },
+  {
+    name: "Bicep Curl",
+    img: "Assets/bicep_curls.gif",
+    bodyPart: "Biceps",
+    bodyweight: false,
+    equipment: "Dumbell or Barbell",
+  },
+  {
+    name: "Weighted Squat",
+    img: "Assets/weighted_squat.gif",
+    bodyPart: "Legs",
+    bodyweight: false,
+    equipment: "Barbell, Squat Rack",
+  },
+  {
+    name: "Deadlift",
+    img: "Assets/deadlift.gif",
+    bodyPart: "Lower Back, Hamstrings",
+    bodyweight: false,
+    equipment: "Barbell, Weight Plates",
+  },
+  {
+    name: "Leg Extension",
+    img: "Assets/leg_extension.gif",
+    bodyPart: "Quadriceps",
+    bodyweight: false,
+    equipment: "Leg Extension Machine",
+  },
+  {
+    name: "Leg Curls",
+    img: "Assets/leg_curls.gif",
+    bodyPart: "Hamstrings",
+    bodyweight: false,
+    equipment: "Leg Curl Machine",
+  },
+  {
+    name: "Crunches",
+    img: "Assets/crunches.gif",
+    bodyPart: "Abdominals",
+    bodyweight: true,
+    equipment: "None",
+  },
+  {
+    name: "Plank",
+    img: "Assets/plank.gif",
+    bodyPart: "Core",
+    bodyweight: true,
+    equipment: "None",
+  },
+  {
+    name: "Lunges",
+    img: "Assets/lunges.gif",
+    bodyPart: "Legs",
+    bodyweight: true,
+    equipment: "None",
+  },
+  {
+    name: "Pistol Squat",
+    img: "Assets/pistol_squat.gif",
+    bodyPart: "Legs",
+    bodyweight: true,
+    equipment: "None",
+  },
+  {
+    name: "Push-ups",
+    img: "Assets/push_ups.gif",
+    bodyPart: "Chest, Shoulders, Triceps",
+    bodyweight: true,
+    equipment: "None",
+  },
+  {
+    name: "Dips",
+    img: "Assets/dips.gif",
+    bodyPart: "Chest, Shoulders, Triceps",
+    bodyweight: true,
+    equipment: "Parallel Bars or Dip Station",
+  },
+  {
+    name: "Pull-ups",
+    img: "Assets/pull_ups.gif",
+    bodyPart: "Back, Biceps",
+    bodyweight: true,
+    equipment: "Pull-up Bar",
+  },
+  {
+    name: "Pike Push-ups",
+    img: "Assets/pike_push_ups.gif",
+    bodyPart: "Chest, Triceps, Shoulders",
+    bodyweight: true,
+    equipment: "None",
+  },
+  {
+    name: "Diamond Push-ups",
+    img: "Assets/diamond_push_ups.gif",
+    bodyPart: "Chest, Triceps",
+    bodyweight: true,
+    equipment: "None",
+  },
 ];
+
 // Your final submission should have much more data than this, and
 // you should use more than just an array of strings to store it all.
 
@@ -66,53 +190,48 @@ function showCards() {
   cardContainer.innerHTML = "";
   const templateCard = document.querySelector(".card");
 
-  for (let i = 0; i < titles.length; i++) {
-    let title = titles[i];
-
-    // This part of the code doesn't scale very well! After you add your
-    // own data, you'll need to do something totally different here.
-    let imageURL = "";
-    if (i == 0) {
-      imageURL = FRESH_PRINCE_URL;
-    } else if (i == 1) {
-      imageURL = CURB_POSTER_URL;
-    } else if (i == 2) {
-      imageURL = EAST_LOS_HIGH_POSTER_URL;
-    }
-
+  for (let i = 0; i < workouts.length; i++) {
+    let workout = workouts[i];
     const nextCard = templateCard.cloneNode(true); // Copy the template card
-    editCardContent(nextCard, title, imageURL); // Edit title and image
+    editCardContent(nextCard, workout); // Edit title and image
     cardContainer.appendChild(nextCard); // Add new card to the container
   }
 }
 
-function editCardContent(card, newTitle, newImageURL) {
+function editCardContent(card, workout) {
   card.style.display = "block";
 
   const cardHeader = card.querySelector("h2");
-  cardHeader.textContent = newTitle;
+  cardHeader.textContent = workout.name;
 
   const cardImage = card.querySelector("img");
-  cardImage.src = newImageURL;
-  cardImage.alt = newTitle + " Poster";
+  cardImage.src = workout.img;
+  cardImage.alt = workout.name + " image";
+
+  const cardContent = card.querySelector(".card-content");
+  const workoutDetails = cardContent.querySelector("ul");
+  workoutDetails.innerHTML = `
+    <li>Body Part: ${workout.bodyPart}</li>
+    <li>Bodyweight: ${workout.bodyweight ? "Yes" : "No"}</li>
+    <li>Equipment: ${workout.equipment}</li>
+  `;
 
   // You can use console.log to help you debug!
   // View the output by right clicking on your website,
   // select "Inspect", then click on the "Console" tab
-  console.log("new card:", newTitle, "- html: ", card);
+  //console.log("new card:", newTitle, "- html: ", card);
 }
 
 // This calls the addCards() function when the page is first loaded
 document.addEventListener("DOMContentLoaded", showCards);
 
 function quoteAlert() {
-  console.log("Button Clicked!");
   alert(
     "I guess I can kiss heaven goodbye, because it got to be a sin to look this good!"
   );
 }
 
 function removeFirstCard() {
-  titles.pop(); // Remove last item in titles array
+  workouts.shift(); // Remove first item in workout array
   showCards(); // Call showCards again to refresh
 }
