@@ -23,277 +23,12 @@
  *
  */
 
+import { workouts } from "./workouts.js";
+import { quotes } from "./quotes.js";
+
 // This is an array of objects (workouts)
-let workouts = [
-  {
-    name: "Bench Press",
-    img: "Assets/bench_press.gif",
-    bodyPart: ["Chest"],
-    bodyweight: false,
-    compound: true,
-    equipment: "Bench and Barbell",
-  },
-  {
-    name: "Incline Press",
-    img: "Assets/incline_press.gif",
-    bodyPart: ["Chest"],
-    bodyweight: false,
-    compound: false,
-    equipment: "Bench and Barbell",
-  },
-  {
-    name: "Shoulder Press",
-    img: "Assets/shoulder_press.gif",
-    bodyPart: ["Shoulders"],
-    bodyweight: false,
-    compound: true,
-    equipment: "Dumbbells or Barbell",
-  },
-  {
-    name: "Lateral Raises",
-    img: "Assets/lateral_raises.gif",
-    bodyPart: ["Shoulders"],
-    bodyweight: false,
-    compound: false,
-    equipment: "Dumbbells or Cable Machine",
-  },
-  {
-    name: "Skull Crushers",
-    img: "Assets/skull_crushers.gif",
-    bodyPart: ["Triceps"],
-    bodyweight: false,
-    compound: true,
-    equipment: "E-Z Curl Bar or Dumbbells",
-  },
-  {
-    name: "Tricep Rope Pushdown",
-    img: "Assets/tricep_rope_pushdown.gif",
-    bodyPart: ["Triceps"],
-    bodyweight: false,
-    compound: false,
-    equipment: "Cable Machine",
-  },
-  {
-    name: "Barbell Rows",
-    img: "Assets/barbell_rows.gif",
-    bodyPart: ["Back"],
-    bodyweight: false,
-    compound: true,
-    equipment: "Barbell",
-  },
-  {
-    name: "Lat Pull Down",
-    img: "Assets/lat_pull_down.gif",
-    bodyPart: ["Back"],
-    bodyweight: false,
-    compound: false,
-    equipment: "Lat Pulldown Machine",
-  },
-  {
-    name: "Shrugs",
-    img: "Assets/shrugs.gif",
-    bodyPart: ["Back"],
-    bodyweight: false,
-    compound: true,
-    equipment: "Dumbell or Barbell",
-  },
-  {
-    name: "Bicep Curl",
-    img: "Assets/bicep_curls.gif",
-    bodyPart: ["Biceps"],
-    bodyweight: false,
-    compound: true,
-    equipment: "Dumbell or Barbell",
-  },
-  {
-    name: "Hammer Curl",
-    img: "Assets/hammer_curl.gif",
-    bodyPart: ["Biceps"],
-    bodyweight: false,
-    compound: false,
-    equipment: "Dumbell",
-  },
-  {
-    name: "Weighted Squat",
-    img: "Assets/weighted_squat.gif",
-    bodyPart: ["Legs"],
-    bodyweight: false,
-    compound: true,
-    equipment: "Barbell, Squat Rack",
-  },
-  {
-    name: "Deadlift",
-    img: "Assets/deadlift.gif",
-    bodyPart: ["Back", "Legs"],
-    bodyweight: false,
-    compound: true,
-    equipment: "Barbell, Weight Plates",
-  },
-  {
-    name: "Leg Extension",
-    img: "Assets/leg_extension.gif",
-    bodyPart: ["Legs"],
-    bodyweight: false,
-    compound: false,
-    equipment: "Leg Extension Machine",
-  },
-  {
-    name: "Leg Curls",
-    img: "Assets/leg_curls.gif",
-    bodyPart: ["Legs"],
-    bodyweight: false,
-    compound: false,
-    equipment: "Leg Curl Machine",
-  },
-  {
-    name: "Crunches",
-    img: "Assets/crunches.gif",
-    bodyPart: ["Abs"],
-    bodyweight: true,
-    compound: false,
-    equipment: "None",
-  },
-  {
-    name: "Plank",
-    img: "Assets/plank.gif",
-    bodyPart: ["Abs"],
-    bodyweight: true,
-    compound: true,
-    equipment: "None",
-  },
-  {
-    name: "Lunges",
-    img: "Assets/lunges.gif",
-    bodyPart: ["Legs"],
-    bodyweight: true,
-    compound: true,
-    equipment: "None",
-  },
-  {
-    name: "Pistol Squat",
-    img: "Assets/pistol_squat.gif",
-    bodyPart: ["Legs"],
-    bodyweight: true,
-    compound: false,
-    equipment: "None",
-  },
-  {
-    name: "Push-ups",
-    img: "Assets/push_ups.gif",
-    bodyPart: ["Chest", "Shoulders", "Triceps"],
-    bodyweight: true,
-    compound: true,
-    equipment: "None",
-  },
-  {
-    name: "Dips",
-    img: "Assets/dips.gif",
-    bodyPart: ["Chest", "Shoulders", "Triceps"],
-    bodyweight: true,
-    compound: true,
-    equipment: "Parallel Bars or Dip Station",
-  },
-  {
-    name: "Pull-ups",
-    img: "Assets/pull_ups.gif",
-    bodyPart: ["Back", "Biceps"],
-    bodyweight: true,
-    compound: true,
-    equipment: "Pull-up Bar",
-  },
-  {
-    name: "Pike Push-ups",
-    img: "Assets/pike_push_ups.gif",
-    bodyPart: ["Chest", "Triceps", "Shoulders"],
-    bodyweight: true,
-    compound: true,
-    equipment: "None",
-  },
-  {
-    name: "Diamond Push-ups",
-    img: "Assets/diamond_push_ups.gif",
-    bodyPart: ["Chest", "Triceps"],
-    bodyweight: true,
-    compound: true,
-    equipment: "None",
-  },
-];
 
 //Motivational Quotes
-let quotes = [
-  {
-    quote:
-      "“I hated every minute of training, but I said, 'Don't quit'. Suffer now and live the rest of your life as a champion.”",
-    author: "Muhammad Ali",
-  },
-  {
-    quote:
-      "“We are what we repeatedly do. Excellence then is not an act but a habit.”",
-    author: "Aristotele",
-  },
-  {
-    quote: "“The body achieves what the mind believes.”",
-    author: "Napoleon Hill",
-  },
-  {
-    quote:
-      "“The hard days are the best because that's when champions are made, so if you push through, you can push through anything.”",
-    author: "Dana Vollmer",
-  },
-  {
-    quote:
-      "“If you don't find the time, if you don't do the work, you don't get the results.”",
-    author: "Arnold Schwarzenegger",
-  },
-  {
-    quote: "“Push harder than yesterday if you want a different tomorrow.”",
-    author: "Vincent Williams Sr.",
-  },
-  {
-    quote: "“The real workout starts when you want to stop.”",
-    author: "Ronnie Coleman",
-  },
-  {
-    quote:
-      "“I've failed over and over again in my life and that is why I succeed.”",
-    author: "Michael Jordan",
-  },
-  {
-    quote: "“The secret of getting ahead is getting started.”",
-    author: "Mark Twain",
-  },
-  {
-    quote: "“You miss one hundred percent of the shots you don't take.”",
-    author: "Wayne Gretzky",
-  },
-  {
-    quote:
-      "“Most people fail, not because of lack of desire, but, because of lack of commitment.”",
-    author: "Vince Lombardi",
-  },
-  {
-    quote:
-      "“Just believe in yourself. Even if you don't, just pretend that you do and at some point, you will.”",
-    author: "Venus Williams",
-  },
-  {
-    quote:
-      "“If you want something you've never had, you must be willing to do something you've never done.”",
-    author: "Thomas Jefferson",
-  },
-  {
-    quote: "“Once you learn to quit, it becomes a habit.”",
-    author: "Vince Lombardi",
-  },
-  {
-    quote: "“Do something today that your future self will thank you for.”",
-    author: "Sean Patrick Flanery",
-  },
-  {
-    quote: "“What hurts today makes you stronger tomorrow”",
-    author: "Jay Cutler",
-  },
-];
 
 // Your final submission should have much more data than this, and
 // you should use more than just an array of strings to store it all.
@@ -381,21 +116,6 @@ function bodyPartFilter(workout, selectedBodyParts) {
   return false;
 }
 
-// This calls the addCards() function when the page is first loaded as well as if any of the events occurs
-document.addEventListener("DOMContentLoaded", function () {
-  const searchInput = document.getElementById("searchInput");
-  if (searchInput != null) {
-    searchInput.addEventListener("input", showCards);
-  }
-
-  const filtersCheckBoxes = document.querySelectorAll('input[type="checkbox"]');
-  for (let i = 0; i < filtersCheckBoxes.length; i++) {
-    filtersCheckBoxes[i].addEventListener("click", showCards);
-  }
-
-  showCards(); // Ensure that cards are displayed initially
-});
-
 //Edit Card Content Method
 function editCardContent(card, workout) {
   card.style.display = "block";
@@ -474,7 +194,7 @@ let todaysWorkoutCards = [];
 let nonRepeatIndex = [];
 
 //Display Today's Workout
-function todaysWorkout() {
+function showTodaysCards() {
   //Hide all the workouts before showing today's workouts
   hideAllCards();
 
@@ -484,11 +204,11 @@ function todaysWorkout() {
   // Clear today's workout array
   todaysWorkoutCards = [];
 
-  // Indices
+  // Clear nonRepeatIndex array
   nonRepeatIndex = [];
 
   //Display only 6 workouts for the day
-  for (i = 0; i < 6; i++) {
+  for (let i = 0; i < 6; i++) {
     let randomIndex;
     do {
       randomIndex = Math.floor(Math.random() * workouts.length);
@@ -520,3 +240,40 @@ function removeFirstCard() {
     counterText.textContent = `${6 - todaysWorkoutCards.length}/6 Complete`;
   }
 }
+
+// This calls all the functions when the page is first loaded as well as if any of the events occurs
+document.addEventListener("DOMContentLoaded", function () {
+  // Add event listener for the "search" input
+  const searchInput = document.getElementById("searchInput");
+  if (searchInput != null) {
+    searchInput.addEventListener("input", showCards);
+  }
+
+  // Add event listener for the checkboxes
+  const filtersCheckBoxes = document.querySelectorAll('input[type="checkbox"]');
+  for (let i = 0; i < filtersCheckBoxes.length; i++) {
+    filtersCheckBoxes[i].addEventListener("click", showCards);
+  }
+
+  // Add event listener for the "Get Motivation" button
+  const getMotivationButton = document.getElementById("getMotivationButton");
+  getMotivationButton.addEventListener("click", quoteGenerator);
+
+  // Add event listener for the "closePopUp" button
+  const closePopUpButton = document.getElementById("closeButton");
+  closePopUpButton.addEventListener("click", closePopup);
+
+  // Add event listener for the "Show All Workout" button
+  const showAllWorkoutButton = document.getElementById("showAllWorkoutButton");
+  showAllWorkoutButton.addEventListener("click", showAllWorkout);
+
+  // Add event listener for the "Today's Workout" button
+  const todaysWorkoutButton = document.getElementById("todaysWorkoutButton");
+  todaysWorkoutButton.addEventListener("click", showTodaysCards);
+
+  // Add event listener for the "Remove Workout" button
+  const removeWorkoutButton = document.getElementById("removeWorkoutButton");
+  removeWorkoutButton.addEventListener("click", removeFirstCard);
+
+  showCards(); // Ensure that cards are displayed initially
+});

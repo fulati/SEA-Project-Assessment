@@ -4,8 +4,10 @@
     <title>Workout Planner</title>
     <meta name="description" content="A Catalog of Workouts" />
     <link rel="stylesheet" href="style.css" />
-    <script type="text/javascript" src="scripts.js"></script>
     <link rel="icon" href="Assets\pageIcon.png" />
+    <script type="module" src="workouts.js"></script>
+    <script type="module" src="quotes.js"></script>
+    <script type="module" src="scripts.js"></script>
   </head>
 
   <body>
@@ -14,7 +16,7 @@
       <h1 class="title">Workout Planner</h1>
       <input type="text" id="searchInput" placeholder="Search workouts..." />
 
-      <button onclick="quoteGenerator();">Get Motivation!</button>
+      <button id="getMotivationButton">Get Motivation!</button>
     </header>
 
     <!-- Sidebar -->
@@ -54,13 +56,13 @@
           ><input type="checkbox" id="compoundCheckbox" value="Compound" />
           Compound Workouts</label
         >
-        <button onclick="showAllWorkout();">Show All Workouts</button>
+        <button id="showAllWorkoutButton">Show All Workouts</button>
       </div>
       <hr class="horizontalLine" />
       <div class="todaysWorkout">
         <h3 class="centeredTexts">Today's Workout:</h3>
-        <button onclick="todaysWorkout();">Today's Workout</button>
-        <button onclick="removeFirstCard();">Remove Workout</button>
+        <button id="todaysWorkoutButton">Today's Workout</button>
+        <button id="removeWorkoutButton">Remove First Workout</button>
         <h3 class="centeredTexts" id="completedWorkoutText">0/6 Complete</h3>
       </div>
     </div>
@@ -68,12 +70,7 @@
     <!-- Motivation Popup -->
     <div id="motivationPopUp" class="popup">
       <div class="popUp-content">
-        <img
-          onclick="closePopup();"
-          id="closeBtn"
-          src="Assets\closeBtn.png"
-          alt="close button"
-        />
+        <img id="closeButton" src="Assets\closeBtn.png" alt="close button" />
         <p id="quote"></p>
       </div>
     </div>

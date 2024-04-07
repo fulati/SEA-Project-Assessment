@@ -35,7 +35,7 @@ body {
 .sidebar {
   background-color: rgb(60, 60, 60);
   color: white;
-  height: 59vh;
+  height: 520px;
   width: 240px;
   position: fixed;
   left: 25px;
@@ -159,11 +159,11 @@ ul {
 }
 
 /* Close button */
-#closeBtn {
+#closeButton {
   float: right;
   width: 25px;
 }
 
-#closeBtn:hover {
+#closeButton:hover {
   cursor: pointer;
 }
